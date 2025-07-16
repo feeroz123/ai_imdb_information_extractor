@@ -23,7 +23,22 @@ if st.button("Extract Data"):
                 }
 
             dataframe = pd.DataFrame(data, index=[0])
-            st.table(dataframe)
+            # st.table(dataframe)
+            st.dataframe(
+                dataframe, 
+                use_container_width=True,
+                column_config={
+                    "Title": st.column_config.TextColumn("Title", width="medium"),
+                    "Plot": st.column_config.TextColumn("Plot", width="large"),
+                    "Cast": st.column_config.TextColumn("Cast", width="large"),
+                    "Genre": st.column_config.TextColumn("Genre", width="small"),
+                    "Director": st.column_config.TextColumn("Director", width="medium"),
+                    "Year": st.column_config.NumberColumn("Year", width="small"),
+                    "Rating": st.column_config.NumberColumn("Rating", width="small"),
+                    "Runtime (mins)": st.column_config.NumberColumn("Runtime (mins)", width="small"),
+                    "Language": st.column_config.TextColumn("Language", width="small")
+                }
+            )
         else:
             st.error("Failed to extract data. Please check the URL and try again.")
     else:
